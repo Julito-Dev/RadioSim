@@ -35,7 +35,7 @@ class Physics {
             std::vector<Neutron> newNeutrons;
             int count = fuel.getNeutronReleased();
 
-            std::uniform_real_distribution<float> angles(0.0f, 2.0f * M_PI);
+            std::uniform_real_distribution<float> angles(0.0f, 2.0f * PhysicsConstants::PI);
 
             for (int i = 0; i<count ; i++){
                 float angle = angles(rng);
