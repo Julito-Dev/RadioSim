@@ -37,4 +37,16 @@ class Vector2d {
     void print() const {
         std::cout << "(" << x << ", " << y << ")";
     }
+
+    Vector2d normalized() const {
+        float mag = this -> magnitude();
+        if (mag == 0){
+            return Vector2d(0.0f, 0.0f);
+        }
+        else{
+            return Vector2d(x/mag, y/mag);
+        }
+    }
+
+    
 };
