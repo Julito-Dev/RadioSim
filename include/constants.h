@@ -11,4 +11,6 @@ namespace PhysicsConstants {
 
     // 5.5 is the speed threshold for a neutral to be considered fast or not.
     constexpr float FAST_THERMAL_THRESOLD = (FAST_NEUTRON_SPEED + THERMAL_NEUTRON_SPEED) / 2;
+
+    constexpr float PI = 3.14159265358979323846f;
 }
