@@ -2,7 +2,6 @@
 
 namespace PhysicsConstants {
     constexpr float NEUTRON_MASS = 1.0f;   
-    constexpr float PROTON_MASS = 0.9986f;
 
     // Typical velocity of neutrons inside a reactor (relative, not real m/s)
     // "Fast" neutron (just released by fision) are more faster.
