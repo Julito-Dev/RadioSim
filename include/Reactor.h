@@ -12,14 +12,16 @@ class Reactor {
     private:
         std::vector<Neutron> neutrons;
         std::vector<FuelAtom> fuealAtoms;
-        std::mt19937 rng;  // Random numbers generator 
+        std::mt19937 rng;  // Random numbers generator
+        int escapedCount = 0;
+        int absorbedCount = 0;
         float collisionRadius; // distance to "crash"
-    
+        float boundaryRadius;
 
     public:
 
-        Reactor(unsigned int seed, float collisionRadius):
-        rng(seed), collisionRadius(collisionRadius) {}
+        Reactor(unsigned int seed, float collisionRadius, float boundaryRadius):
+        rng(seed), collisionRadius(collisionRadius), boundaryRadius(boundaryRadius) {}
 
 
         void addNeutron(Neutron neutron){
@@ -37,7 +39,19 @@ class Reactor {
             // 1. phase: Move all neutrons in the reactor
 
             for(auto& neutron: neutrons){
+                if (!neutron.isActive()){
+                    continue;
+                }
+
                 neutron.move(deltaTime);
+                Vector2d posNeutron = neutron.getPosition();
+                Vector2d centerReactor = Vector2d(0,0);
+
+                float distanceToCenter = posNeutron.distanceTo(centerReactor);
+                if (distanceToCenter>= boundaryRadius){
+                    neutron.deactivate();
+                    escapedCount++;
+                }
             }
 
             // 2. Phase: Check for collision neutron-atom
@@ -68,6 +82,7 @@ class Reactor {
 
                            else {                       //if not collision (Neutron is absorbed)
                                 neutron.deactivate();
+                                absorbedCount++;
                                 break;
                            }
                         }
@@ -100,6 +115,10 @@ class Reactor {
             }
             
             return consumedCount;
+        }
+
+        int getEscapedCount() const {
+            return escapedCount;
         }
 
         void printNeutronPositions() const {
