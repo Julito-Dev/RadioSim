@@ -130,4 +130,14 @@ class Reactor {
                 }
             }
         }
+
+        std::vector<Neutron> getAllNeutrons() const {
+            return neutrons;
+        }
+
+        std::vector<FuelAtom> getAllFuelAtoms() const {
+            return fuealAtoms;
+        } 
+
+        
 };
