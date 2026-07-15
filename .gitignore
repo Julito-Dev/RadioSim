@@ -1,0 +1,22 @@
+# Build
+build/
+
+# Ejecutables
+*.exe
+
+# Objetos
+*.o
+*.obj
+
+# Archivos de CMake generados
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Archivos de Visual Studio
+*.vcxproj*
+*.sln
+
+# VSCode (opcional)
+.vscode/settings.json
